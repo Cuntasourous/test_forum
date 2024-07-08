@@ -1,0 +1,454 @@
+@charset "utf-8";
+/* CSS Document */
+
+.left{
+    height: 448px;
+    width: 300px;
+    margin-left: 150px;
+    position: fixed;
+}
+
+.flexed-nav{
+    display: flex;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border-radius: 40px;
+}
+.left .nav {
+    margin-top: 35px;
+}
+.nav .flexed-nav h2 {
+    margin-top: 1px;
+    margin-left: 20px;
+    font-family: 'Century Gothic';
+    font-weight: normal;
+    height: auto;
+}
+.nav .flexed-nav h2:hover{
+    text-decoration: underline;
+}
+
+.center{
+    width: 550px;
+    height: 863px;
+    margin-left: 474px;
+}
+
+
+.nav .flexed-nav a{
+text-decoration: none;
+    color: black;
+}
+.search form input {
+    border: none;
+    background-color: #EBEBEB;
+    color: grey;
+    font-size: 20px;
+    font-family: 'century gothic';
+    padding-left: 28px;
+}
+
+.center .search{
+    border-radius: 30px;
+    background-color: #EBEBEB;
+    width: 514px;
+    padding-top: 10px;
+    position: absolute;
+    margin-top: 7px;
+    margin-left: 16px;
+    padding-left: 32px;
+    padding-bottom: 10px;
+}
+
+.center .post {
+    position: absolute;
+    margin-top: 73px;
+    margin-left: 0px;
+    width: 571px;
+    height: 258px;
+}
+
+.post form textarea {
+    margin-left: 23px;
+    width: 501px;
+    height: 112px;
+    padding-left: 16px;
+    padding-top: 11px;
+    font-family: 'Century Gothic';
+    font-size: 16px;
+    border: none;
+box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+}
+.center .post h3 {
+    margin-left: 27px;
+    font-family: 'Century Gothic';
+    font-size: 25px;
+}
+
+.post-submit{
+    width: 501px;
+    border: thin solid lightgrey;
+    border-radius: 20px;
+    font-family: 'century gothic';
+    font-size: 15px;
+    font-weight: bold;
+    background-color: white;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    margin-left: 32px;
+    margin-top: 8px;
+    resize: none;
+}
+
+.post-submit:hover{
+    background-color: #EBEBEB;
+}
+
+.post-box{
+    position: absolute;
+    margin-left: 27px;
+    font-family: 'Century Gothic';
+    margin-top: 349px;
+    padding-left: 16px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 501px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+}
+
+.post-box h3{
+    font-size: 20px;
+}
+
+.flexed{
+    display: flex;
+}
+
+.post-box .flexed h4{
+    font-size: 15px;
+    margin-top: 23px;
+    margin-left: 10px;
+}
+
+.center .post-box p {
+    margin-top: -5px;
+}
+.right {
+    margin-top: -859px;
+    margin-left: 1194px;
+}
+
+.banner{
+    background-color: white;
+    width: 40%;
+    height: 760px;
+    margin-left: -8px;
+    margin-top: -10px;
+    position: fixed;
+}
+.banner img {
+    margin-left: 200px;
+    margin-top: 180px;
+}
+.banner h1 {
+    margin-left: 169px;
+    margin-top: 12px;
+    font-size: 30px;
+    
+}
+
+.banner p {
+    margin-top: 200px;
+    margin-left: 235px;
+    font-size: 18px;
+}
+
+.banner p a {
+    text-decoration: underline solid 2px #d9717100;
+    color: black;
+    transition: all 0.3s ease;
+}
+
+.banner p a:hover{
+    text-decoration: underline solid 2px #d971717d;
+    transition: all 0.3s ease;
+}
+
+.sign-btn {
+    background-color: white;
+    border: 2px solid;
+    border-radius: 50px;
+    padding-top: 15px;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-bottom: 15px;
+    font-family: 'century gothic';
+    font-weight: bold;
+    color: #FF8A80;
+    margin-left: 169px;
+    margin-top: 30px;
+    transition: background-color 0.3s ease;
+}
+
+.sign-btn:hover{
+    background-color: #D97171;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+.sign-form {
+    margin-left: 612px;
+    width: 718px;
+    height: 581px;
+    padding-top: 107px;
+}
+
+.sign-form form h1{
+    margin-left: -257px;
+    font-size: 39px;
+    margin-bottom: 93px;
+    text-align: center;
+    width: 873px;
+}
+
+input:focus {
+    outline: none;
+  }
+
+.sign-form form .account-int {
+    padding-top: 15px;
+    padding-right: 318px;
+    padding-left: 30px;
+    padding-bottom: 15px;
+    font-family: 'century gothic';
+    background-color: #EAEEED;
+    border: none;
+    margin-bottom: 10px;
+    font-size: 15px;
+    margin-left: -53px;
+}
+.sign-form form {
+    margin-top: -14px;
+    margin-left: 276px;
+    padding-top: 0px;
+}
+.sign-form form .sign-btn {
+    margin-left: 75px;
+    background-color: #F5F5F5;
+    transition: background-color 0.3s ease;
+}
+.sign-form form .sign-btn:hover {
+    background-color: #D97171;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+.account-info {
+    margin-left: 499px;
+    position: absolute;
+    margin-top: 78px;
+}
+.grey{
+    color: lightgrey;
+    font-family: 'century gothic';
+    margin-right: 262px;
+}
+.account-info form .large{
+    border: none;
+    font-family: 'century gothic';
+    font-size: 55px;
+    font-weight: bold;
+    margin-top: -30px;
+    background: none;
+    margin-bottom: 70px;
+}
+
+.account-info form .large-2{
+    border: none;
+    font-family: 'century gothic';
+    font-size: 50px;
+    font-weight: bold;
+    margin-top: -30px;
+    background: none;
+    margin-bottom: 70px;
+}
+
+.account-info form .small{
+    border: none;
+    font-family: 'century gothic';
+    font-size: 40px;
+    font-weight: bold;
+    margin-top: 41px;
+    background: none;
+    margin-left: -1px;
+    position: absolute;
+}
+
+.account-info form .small-2{
+    border: none;
+    font-family: 'century gothic';
+    font-size: 40px;
+    font-weight: bold;
+    margin-top: 41px;
+    background: none;
+    margin-left: 354px;
+    position: absolute;
+}
+
+.account-info form{
+    position: fixed;
+}
+.account-info .sign-btn {
+    margin-top: 524px;
+    margin-left: 171px;
+}
+
+.account-info .sign-btn-2{
+    background-color: white;
+    border: 2px solid;
+    border-radius: 50px;
+    padding-top: 15px;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-bottom: 15px;
+    font-family: 'century gothic';
+    font-weight: bold;
+    color: #FF8A80;
+    margin-left: 169px;
+    margin-top: 179px;
+    transition: background-color 0.3s ease;
+}
+
+.sign-btn-2:hover{
+    background-color: #D97171;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+.account-info a .delete-icon {
+    margin-left: -469px;
+}
+.post-box .icons img {
+    margin-right: 42px;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+}
+
+.post-box .icons img:hover{
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+    transition: all 0.3s ease;
+}
+.center .post-box .icons {
+    margin-left: 283px;
+}
+
+#create-comment{
+    background-color: white;
+    width: 457px;
+    height: 41px;
+    margin-left: 23px;
+    margin-top: 12px;
+    border-radius: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    padding: 5px;
+    padding-left: 50px;
+    border: none;
+    font-family: 'century gothic';
+}
+
+.box{
+    width: 25px;
+    height: 25px;
+    background-color: #FF8A80;
+    border-radius: 8px;
+    margin-top: 12px;
+    margin-left: -31px;
+}
+.comment-submit{
+    border: none;
+    padding: 5px 25px;
+    border-radius: 5px;
+    font-family: 'century gothic';
+    margin-top: -5px;
+    height: 30px;
+    margin-left: -13px;
+    background-color: none;
+    transition: background-color 0.5s ease;
+}
+#create-comment form .comment-box {
+    margin-top: -4px;
+    border: none;
+    padding: 5px 1px;
+    padding-top: 2px;
+    padding-right: 20px;
+    padding-left: 4px;
+    padding-bottom: 2px;
+    font-family: 'century gothic';
+    width: 367px;
+    margin-left: 8px;
+}
+
+.post #create-comment form {
+    margin-top: -23px;
+    display: flex;
+}
+
+.comment-submit:hover{
+    background-color: #FF8A80;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+.comment-sent-box .flexed h5 {
+    margin-right: 48px;
+}
+.comment-sent-box .flexed .comment-date {
+    width: 344px;
+    margin-left: 194px;
+    padding-left: 0px;
+    font-size: x-small;
+    margin-top: 25px;
+}
+/* .comment-sent .comment-sent-box .flexed {
+
+} */
+
+
+.comment-sent .comment-sent-box p {
+    margin-top: -16px;
+    width: 448px;
+    font-size: 12px;
+}
+
+.center .post .comment-sent {
+    margin-left: 32px;
+    display: flex;
+    font-family: 'century gothic';
+    margin-top: 0px;
+}
+
+.comment-sent .comment-sent-box{
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    padding-top: 1px;
+    padding-left: 10px;
+    padding-bottom: 2px;
+    width: 454px;
+    margin-top: 21px;
+    transition: all 0.3s ease;
+}
+
+.post .comment-sent .line {
+    z-index: 10;
+    background-color: #ACACAC;
+    width: 2px;
+    margin-left: 4px;
+    margin-right: 18px;
+    margin-bottom: -27px;
+}
+.comment-sent .comment-sent-box img {
+    margin-left: 409px;
+    padding-top: 0px;
+    position: absolute;
+    margin-top: -26px;
+}
+
+.comment-sent .comment-sent-box img:hover{
+        box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+        transition: all 0.3s ease;
+}

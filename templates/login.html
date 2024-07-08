@@ -4,15 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link href="/static/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <h2>Log in</h2>
-    <form method="POST" action="/login">
-        <input type="text" name="username" placeholder="Username" required><br>
-        <input type="password" name="password" placeholder="Password" required><br>
-        <input type="submit" value="Login">
-    </form>
-    <a href="/register">register</a>
-    <a href="/home">enter as guest</a>
+    <div class="banner">
+        <img src="/static/img/LOGO.png" width="200" height="auto" alt="logo"/>
+        <h1>Welcome Back!</h1>
+            <a href="/register"><button class="sign-btn">SIGN UP</button></a>    
+            <p><a href="/home"> Enter as guest</a></p>
+    </div>
+        
+        <div class="sign-form">
+        <form method="POST" action="/login">
+            <h1>Enter Account</h1>
+            <input class="account-int" type="text" name="username" placeholder="Username" required><br>
+            <input class="account-int" type="password" name="password" placeholder="Password" required><br>
+            <input class="sign-btn" type="submit" value="LOG IN">
+            </form>
+        </div>
+        
+        <style>
+            body{
+                background-color: #F5F5F5;
+                font-family: 'century gothic';
+                
+            }
+            /* #EAEEED */
+            
+        </style>
 </body>
 </html>

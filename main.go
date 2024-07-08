@@ -137,6 +137,9 @@ func main() {
 	http.HandleFunc("/view_post/", handleViewPost)
 	http.HandleFunc("/add_comment/", handleAddCommentAJAX)
 	http.HandleFunc("/profile", ViewProfileHandler)
+	// Serve static files
+	fs := http.FileServer(http.Dir("static"))
+	http.Handle("/static/", http.StripPrefix("/static/", fs))
 	log.Print("http://localhost:8080/")
 	http.ListenAndServe(":8080", nil)
 }
