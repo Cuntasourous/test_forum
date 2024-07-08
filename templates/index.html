@@ -4,9 +4,113 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lets Chat Homepage</title>
+    <link href="/static/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    {{if .LoggedInUser}}
+    <div id="topbar">
+        <img src="/static/img/LOGO.png" width="100px" height="auto" alt="logo"/>
+    </div>
+    <div id="flex">
+        <div id="navbar">
+            <!-- home -->
+            <a href="/home">
+                <div class="active">
+                    <img src="/static/img/home-icon.png" alt="home">
+                    Home
+                </div>
+            </a>
+            <!-- home -->
+            <a href="/view_categories">
+                <div class="nav-item">
+                    <img src="/static/img/home-icon.png" alt="home">
+                    Categories
+                </div>
+            </a>
+            <!-- create post -->
+            {{if .LoggedInUser}}
+            <a href="/create_post">
+                <div class="nav-item">
+                    <img src="/static/img/home-icon.png" alt="home">
+                    Create Post
+                </div>
+            </a>
+            {{end}}
+            <!-- profile -->
+            {{if .LoggedInUser}}
+            <a href="/profile">
+                <div class="nav-item">
+                    <img src="/static/img/home-icon.png" alt="home">
+                    Profile
+                </div>
+            </a>
+            {{end}}
+            <!-- logout -->
+            {{if .LoggedInUser}}
+            <a href="/logout">
+                <div class="nav-item">
+                    <img src="/static/img/home-icon.png" alt="home">
+                    Log out
+                </div>
+            </a>
+            {{else}}
+            <a href="/login">
+                <div class="nav-item">
+                    <img src="/static/img/home-icon.png" alt="home">
+                    Login
+                </div>
+            </a>
+            {{end}}
+        </div>
+        <div id="middle-posts">
+            <div class="greetings">
+                {{if .LoggedInUser}}
+                <h1>Welcome, {{.LoggedInUser}}!</h1>
+                <p>Lets get to work</p>
+                {{end}}
+            </div>
+            <div id="posts">
+                {{range .Posts}}
+                <div class="post-structure">
+                    <a href="view_post/{{.PostID}}">
+                    <div class="username">
+                        <h5>{{.Username}}</h5>
+                        <p>posted on ({{.PostDate}})</p>
+                    </div>
+                    <div class="post-category">
+                        {{range .Categories}}
+                        {{.}}
+                        {{end}}
+                    </div>
+                    <div class="post-text">
+                        {{.PostText}}
+                    </div>
+                </a>
+                    <div class="post-options">
+                        <!-- {{if $.LoggedInUser}} -->
+                        <form method="POST" action="/like/{{.PostID}}">
+                            <button type="submit"><div class="heart"></div></button>
+                        </form>
+                        <b>
+                        Likes <span id="like-count-{{.PostID}}">   {{.LikeCount}}</span>
+                        </b>
+                        <form method="POST" action="/dislike/{{.PostID}}">
+                            <button type="submit"><div class="heart"></div></button>
+                        </form>
+                        <b>
+                        Dislikes <span id="dislike-count-{{.PostID}}">{{.DislikeCount}}</span>
+                    </b>
+                        <!-- {{end}} -->
+                    </div>
+                </div>
+                {{end}}
+            </div>
+        </div>
+        <div id="news">
+            <img src="/static/img/climate.png" width="300px" height="auto" alt="climate">
+        </div>
+    </div>
+    
+    <!-- {{if .LoggedInUser}}
         <h2>Welcome, {{.LoggedInUser}}!</h2>
     {{else}}
         <a href="/login">login</a>
@@ -30,14 +134,12 @@
               {{.}}
             {{end}}
             <br>
-            <!-- {{if $.LoggedInUser}} -->
                 <form method="POST" action="/like/{{.PostID}}">
                     <button type="submit">Like</button>
                 </form>
                 <form method="POST" action="/dislike/{{.PostID}}">
                     <button type="submit">Dislike</button>
                 </form>
-            <!-- {{end}} -->
           </li>
         {{end}}
     </ul>
@@ -45,6 +147,12 @@
         <form method="POST" action="/logout">
             <button type="submit">Logout</button>
         </form>
-    {{end}}
+    {{end}} -->
+
+    <style>
+        body{
+            background-color: #fbfafb;
+        }
+    </style>
 </body>
 </html>

@@ -1,142 +1,11 @@
 @charset "utf-8";
 /* CSS Document */
 
-.left{
-    height: 448px;
-    width: 300px;
-    margin-left: 150px;
-    position: fixed;
-}
-
-.flexed-nav{
-    display: flex;
-    padding-top: 3px;
-    padding-bottom: 3px;
-    border-radius: 40px;
-}
-.left .nav {
-    margin-top: 35px;
-}
-.nav .flexed-nav h2 {
-    margin-top: 1px;
-    margin-left: 20px;
-    font-family: 'Century Gothic';
-    font-weight: normal;
-    height: auto;
-}
-.nav .flexed-nav h2:hover{
-    text-decoration: underline;
-}
-
-.center{
-    width: 550px;
-    height: 863px;
-    margin-left: 474px;
-}
 
 
-.nav .flexed-nav a{
-text-decoration: none;
-    color: black;
-}
-.search form input {
-    border: none;
-    background-color: #EBEBEB;
-    color: grey;
-    font-size: 20px;
-    font-family: 'century gothic';
-    padding-left: 28px;
-}
+/* ------------------------------------------ REGISTER & LOGIN ------------------------------------------------- */
 
-.center .search{
-    border-radius: 30px;
-    background-color: #EBEBEB;
-    width: 514px;
-    padding-top: 10px;
-    position: absolute;
-    margin-top: 7px;
-    margin-left: 16px;
-    padding-left: 32px;
-    padding-bottom: 10px;
-}
 
-.center .post {
-    position: absolute;
-    margin-top: 73px;
-    margin-left: 0px;
-    width: 571px;
-    height: 258px;
-}
-
-.post form textarea {
-    margin-left: 23px;
-    width: 501px;
-    height: 112px;
-    padding-left: 16px;
-    padding-top: 11px;
-    font-family: 'Century Gothic';
-    font-size: 16px;
-    border: none;
-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
-}
-.center .post h3 {
-    margin-left: 27px;
-    font-family: 'Century Gothic';
-    font-size: 25px;
-}
-
-.post-submit{
-    width: 501px;
-    border: thin solid lightgrey;
-    border-radius: 20px;
-    font-family: 'century gothic';
-    font-size: 15px;
-    font-weight: bold;
-    background-color: white;
-    padding-top: 6px;
-    padding-bottom: 6px;
-    margin-left: 32px;
-    margin-top: 8px;
-    resize: none;
-}
-
-.post-submit:hover{
-    background-color: #EBEBEB;
-}
-
-.post-box{
-    position: absolute;
-    margin-left: 27px;
-    font-family: 'Century Gothic';
-    margin-top: 349px;
-    padding-left: 16px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    width: 501px;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
-}
-
-.post-box h3{
-    font-size: 20px;
-}
-
-.flexed{
-    display: flex;
-}
-
-.post-box .flexed h4{
-    font-size: 15px;
-    margin-top: 23px;
-    margin-left: 10px;
-}
-
-.center .post-box p {
-    margin-top: -5px;
-}
-.right {
-    margin-top: -859px;
-    margin-left: 1194px;
-}
 
 .banner{
     background-color: white;
@@ -325,130 +194,205 @@ input:focus {
 .account-info a .delete-icon {
     margin-left: -469px;
 }
-.post-box .icons img {
-    margin-right: 42px;
-    opacity: 0.6;
-    transition: all 0.3s ease;
-}
 
-.post-box .icons img:hover{
-    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
-    transition: all 0.3s ease;
-}
-.center .post-box .icons {
-    margin-left: 283px;
-}
 
-#create-comment{
-    background-color: white;
-    width: 457px;
-    height: 41px;
-    margin-left: 23px;
-    margin-top: 12px;
-    border-radius: 10px;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-    padding: 5px;
-    padding-left: 50px;
-    border: none;
+
+
+/* ------------------------------------------ HOME PAGE ------------------------------------------------- */
+
+body{
     font-family: 'century gothic';
 }
 
-.box{
-    width: 25px;
-    height: 25px;
-    background-color: #FF8A80;
-    border-radius: 8px;
-    margin-top: 12px;
-    margin-left: -31px;
-}
-.comment-submit{
-    border: none;
-    padding: 5px 25px;
-    border-radius: 5px;
-    font-family: 'century gothic';
-    margin-top: -5px;
-    height: 30px;
-    margin-left: -13px;
-    background-color: none;
-    transition: background-color 0.5s ease;
-}
-#create-comment form .comment-box {
-    margin-top: -4px;
-    border: none;
-    padding: 5px 1px;
-    padding-top: 2px;
-    padding-right: 20px;
-    padding-left: 4px;
-    padding-bottom: 2px;
-    font-family: 'century gothic';
-    width: 367px;
-    margin-left: 8px;
+/* topbar------------------------- */
+#topbar{
+    margin-top: 20px;
+    margin-left: 20px;
+    position: fixed;
 }
 
-.post #create-comment form {
-    margin-top: -23px;
+/* navabr------------------------- */
+#flex{
     display: flex;
 }
 
-.comment-submit:hover{
-    background-color: #FF8A80;
-    color: white;
-    transition: background-color 0.3s ease;
+#flex #navbar{
+    margin-left: -8px;
+    padding-top: 50px;
+    position: fixed;
+    margin-top: 100px;
 }
-.comment-sent-box .flexed h5 {
-    margin-right: 48px;
-}
-.comment-sent-box .flexed .comment-date {
-    width: 344px;
-    margin-left: 194px;
-    padding-left: 0px;
-    font-size: x-small;
-    margin-top: 25px;
-}
-/* .comment-sent .comment-sent-box .flexed {
 
+#flex #navbar a{
+    text-decoration: none;
+}
+
+#flex #navbar a .nav-item{
+    background-color: none;
+    border-radius: 0 50px 50px 0;
+    text-decoration: none;
+    color: grey;
+    width: 218px;
+    height: 40px;
+    font-weight: normal;
+    display: flex; /* Make .nav-item a flex container */
+    align-items: center; /* Center items vertically within .nav-item */
+    margin-bottom: 10px;
+    box-shadow: none;
+    transition: all 0.5s ease;
+}
+
+#flex #navbar a .active{
+    background-color: #fa7268;
+    border-radius: 0 50px 50px 0;
+    text-decoration: none;
+    color: white;
+    width: 218px;
+    height: 40px;
+    font-weight: normal;
+    display: flex; /* Make .nav-item a flex container */
+    align-items: center; /* Center items vertically within .nav-item */
+    margin-bottom: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    transition: all 0.3s ease;
+}
+
+#flex #navbar a:hover .nav-item{
+    background-color: #fa7268;
+    color: white;
+    font-weight: normal;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    transition: all 0.5s ease;
+}
+
+#flex #navbar a .nav-item img{
+    width: 15px;
+    height: auto;
+    margin-left: 30px;
+    margin-right: 25px;
+}
+
+#flex #navbar a .active img{
+    width: 15px;
+    height: auto;
+    margin-left: 30px;
+    margin-right: 25px;
+}
+
+/* middle------------------------- */
+#middle-posts{
+    margin-left: 300px;
+    margin-top: -10px;
+}
+
+#middle-posts .greetings{
+    margin-bottom: 50px;
+    padding-top: 30px;
+}
+
+/* #middle-posts .greetings{
+    margin-bottom: 50px;
+    position: fixed;
+    background-color: #fbfafb;
+    width: 800px;
+    margin-left: -20px;
+    padding-left: 15px;
+    padding-top: 40px;
 } */
 
+#middle-posts .greetings h1{
+    color: #444344;
+}
 
-.comment-sent .comment-sent-box p {
-    margin-top: -16px;
-    width: 448px;
+#middle-posts .greetings p{
+    color: #ABAAAB;
+    margin-top: -15px;
+    margin-left: 6px;
+}
+
+/* Post structure------------------ */
+.post-structure{
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    margin-bottom: 30px;
+    padding: 15px 25px;
+    min-width: 530px;
+}
+
+.post-structure a {
+    text-decoration: none;
+}
+
+.post-structure .username{
+    margin-bottom: 20px;
+    color: #444344;
+}
+
+.post-structure .username h5{
+    font-weight: bold;
+    font-size: 20px;
+    margin: 0 auto;
+}
+.post-structure .username p{
     font-size: 12px;
+    margin: 0 auto;
+    color: #ABAAAB;
 }
 
-.center .post .comment-sent {
-    margin-left: 32px;
+.post-structure .post-category{
+    color: #fa7268;
+    font-size: 12.5px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.post-structure .post-text{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 15px;
+    color: #444344;
+}
+
+#news{
+    margin-top: 150px;
+    margin-left: 60px;
+}
+
+/* .post-structure .line{
+    background-color: #444344;
+    width: 100%;
+    height: 0.5px;
+    opacity: 0.5;
+} */
+
+.post-structure .post-options{
     display: flex;
-    font-family: 'century gothic';
-    margin-top: 0px;
+    border-top: #cac2ca63 solid 1px;
+    padding-top: 20px;
+    color: #ABAAAB;
 }
 
-.comment-sent .comment-sent-box{
-    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-    padding-top: 1px;
-    padding-left: 10px;
-    padding-bottom: 2px;
-    width: 454px;
-    margin-top: 21px;
-    transition: all 0.3s ease;
+.post-structure .post-options form button{
+    border: none;
+    background-color: none;
+    background: none;
+    cursor: pointer;
 }
 
-.post .comment-sent .line {
-    z-index: 10;
-    background-color: #ACACAC;
-    width: 2px;
-    margin-left: 4px;
-    margin-right: 18px;
-    margin-bottom: -27px;
-}
-.comment-sent .comment-sent-box img {
-    margin-left: 409px;
-    padding-top: 0px;
-    position: absolute;
-    margin-top: -26px;
+.post-structure .post-options form button .heart{
+    width: 24px; /* pathのサイズ */
+	height: 24px; /* pathのサイズ */
+	background: #abaaab5c; /* 色 */
+	clip-path: path("M12 4.419c-2.826-5.695-11.999-4.064-11.999 3.27 0 7.27 9.903 10.938 11.999 15.311 2.096-4.373 12-8.041 12-15.311 0-7.327-9.17-8.972-12-3.27z");
+    transform: scale(0.7);
+    margin-top: -3px;
 }
 
-.comment-sent .comment-sent-box img:hover{
-        box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
-        transition: all 0.3s ease;
+.post-structure .post-options form button .heart:hover{
+	background: #FF5252; /* 色 */
 }
+
+.post-structure .post-options span{
+    margin-right: 20px;
+}
+
