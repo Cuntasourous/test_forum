@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>{{.Post.PostText}}</h1><p>{{.Post.PostDate}}</p>
+    <p>Posted by: {{.Post.Username}}</p>
+    <br>
+    Likes: <span>{{.Post.LikeCount}}</span> | Dislikes: <span>{{.Post.DislikeCount}}</span>
+    <br>
+    {{if $.LoggedInUser}}
+        <form method="POST" action="/like2/{{.Post.PostID}}">
+            <button type="submit">Like</button>
+            </form>
+            <form method="POST" action="/dislike2/{{.Post.PostID}}">
+                <button type="submit">Dislike</button>
+            </form>
+    {{end}}
+    <ul id="comments-list">
+        {{range .Comments}}
+        <li>
+            <b>{{.Username}}</b> - {{.CommentText}} ({{.CommentDate}})
+            <br>
+            Likes: <span id="like-count-{{.CommentID}}">{{.LikeCount}}</span> | Dislikes: <span id="dislike-count-{{.CommentID}}">{{.DislikeCount}}</span>
+            <br>
+            {{if $.LoggedInUser}}
+                <form method="POST" action="/clike/{{.CommentID}}">
+                <button type="submit">Like</button>
+                </form>
+                <form method="POST" action="/cdislike/{{.CommentID}}">
+                    <button type="submit">Dislike</button>
+                </form>
+            {{end}}
+        </li>
+        {{end}}
+    </ul>
+
+    <h2>Add a Comment</h2>
+    {{if .LoggedInUser}}
+        <form id="comment-form" method="POST" action="">
+            <textarea name="comment_text" placeholder="Enter your comment"></textarea>
+            <button type="submit">Add Comment</button>
+        </form>
+    {{else}}
+        <a href="/login">login to add a comment</a>
+    {{end}}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#comment-form').submit(function(e) {
+                e.preventDefault();
+                var commentText = $('textarea[name="comment_text"]').val();
+                $.ajax({
+                    url: '/add_comment/{{.Post.PostID}}',
+                    type: 'POST',
+                    data: { comment_text: commentText },
+                    dataType: 'json',
+                    success: function(response) {
+                        var newComment = '<li>' +
+                            '<b>' + response.username + '</b> - ' + response.comment_text + ' (' + response.comment_date + ')' +
+                            '<br>' +
+                            'Likes: <span id="like-count-' + response.comment_id + '">' + response.like_count + '</span> | ' +
+                            'Dislikes: <span id="dislike-count-' + response.comment_id + '">' + response.dislike_count + '</span>' +
+                            '</li>';
+                        $('#comments-list').append(newComment);
+                        $('textarea[name="comment_text"]').val('');
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Error adding comment:", error);
+                        alert("Error adding comment. Please try again.");
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

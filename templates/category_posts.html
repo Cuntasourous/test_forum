@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posts in {{.CategoryName}}</title>
+</head>
+<body>
+    <h1>Posts in {{.CategoryName}}</h1>
+    {{if .Posts}}
+        {{range .Posts}}
+            <div class="post">
+                <h2><a href="/view_post/{{.PostID}}">{{.PostText}}</a></h2>
+                <p>Posted by: {{.Username}}</p>
+                <p>Date: {{.PostDate}}</p>
+                <p>Likes: {{.LikeCount}} | Dislikes: {{.DislikeCount}}</p>
+            </div>
+        {{end}}
+    {{else}}
+        <p>No posts found in this category.</p>
+    {{end}}
+    <a href="/view_categories">Back to Categories</a>
+</body>
+</html>

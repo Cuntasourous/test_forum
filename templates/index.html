@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lets Chat Homepage</title>
+</head>
+<body>
+    {{if .LoggedInUser}}
+        <h2>Welcome, {{.LoggedInUser}}!</h2>
+    {{else}}
+        <a href="/login">login</a>
+    {{end}}
+    <h2>lets chat</h2>
+    {{if .LoggedInUser}}
+        <a href="/profile">Profile</a><br>
+        <a href="/create_post">create post</a><br>
+        <a href="/create_category">Create a new category</a><br>
+    {{end}}
+    <a href="/view_categories">view Categories</a>
+    <ul>
+        {{range .Posts}}
+          <li>
+            <b>{{.Username}}</b> - <a href="view_post/{{.PostID}}"> {{.PostText}}</a> ({{.PostDate}})
+            <br>
+            Likes: <span id="like-count-{{.PostID}}">{{.LikeCount}}</span> | Dislikes: <span id="dislike-count-{{.PostID}}">{{.DislikeCount}}</span>
+            <br>
+            <b>Categories:</b>
+            {{range .Categories}}
+              {{.}}
+            {{end}}
+            <br>
+            <!-- {{if $.LoggedInUser}} -->
+                <form method="POST" action="/like/{{.PostID}}">
+                    <button type="submit">Like</button>
+                </form>
+                <form method="POST" action="/dislike/{{.PostID}}">
+                    <button type="submit">Dislike</button>
+                </form>
+            <!-- {{end}} -->
+          </li>
+        {{end}}
+    </ul>
+    {{if .LoggedInUser}}
+        <form method="POST" action="/logout">
+            <button type="submit">Logout</button>
+        </form>
+    {{end}}
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+</head>
+<body>
+    <h1>Profile for {{.Username}}</h1>
+    <p>Email: {{.Email}}</p>
+    <p>Member since: {{.DateCreated.Format "January 2, 2006"}}</p>
+
+    <h2>Your Posts</h2>
+    <ul>
+        {{range .Posts}}
+        <li><a href="/view_post/{{.PostID}}">{{.PostText}}</a></li>
+        {{else}}
+        <li>No posts yet.</li>
+        {{end}}
+    </ul>
+
+    <h2>Your Comments</h2>
+    <ul>
+        {{range .Comments}}
+        <li>On post <a href="/view_post/{{.PostID}}">View Post</a>: {{.CommentText}}</li>
+        {{else}}
+        <li>No comments yet.</li>
+        {{end}}
+    </ul>
+
+    <h2>Posts You've Liked</h2>
+    <ul>
+        {{range .LikedPosts}}
+        <li><a href="/view_post/{{.PostID}}">{{.PostText}}</a></li>
+        {{else}}
+        <li>No liked posts yet.</li>
+        {{end}}
+    </ul>
+</body>
+</html>

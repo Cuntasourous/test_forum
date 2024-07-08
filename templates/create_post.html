@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Post</title>
+</head>
+<body>
+    <h3>Create a Post</h3>
+    <br>
+    <br>
+    <form id="post-form" method="POST" action="/create_post">
+        <textarea name="post_text" placeholder="Enter post content" required></textarea>
+        <h4>Categories:</h4>
+        <div id="category-list">
+            {{range .Categories}}
+                <input type="checkbox" name="categories" value="{{.CategoryName}}">
+                <label for="{{.CategoryName}}">{{.CategoryName}}</label><br>
+            {{end}}
+            <a href="/create_category">Create a new category</a>
+        </div>
+        <input type="submit" value="Post">
+    </form>
+    <a href="/home">Cancel</a>
+</body>
+</html>
