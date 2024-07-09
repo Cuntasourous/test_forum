@@ -83,6 +83,10 @@ input:focus {
     outline: none;
   }
 
+  textarea:focus {
+    outline: none;
+  }
+
 .sign-form form .account-int {
     padding-top: 15px;
     padding-right: 318px;
@@ -448,3 +452,125 @@ body{
     margin-left: 10px;
     margin-top: -25px;
 }
+
+/* ------------------------------------------ VIEW POST ------------------------------------------------- */
+
+#comment-form{
+    display: flex;
+    border: #cac2ca63 solid 1px;
+    padding-top: 20px;
+    color: #ABAAAB;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    margin: 0 auto;
+    margin-top: -30px;
+    width: 649px;
+}
+
+#comment-form form{
+    display: flex;
+    margin-bottom: 20px;
+    padding-left: 20px;
+}
+
+#comment-form form textarea {
+    font-family: 'century gothic';
+    padding: 12px 0px 0px 0;
+    padding-left: 20px;
+    height: 30px; /* Initial height */
+    /* max-height: 100px;  */
+    min-width: 450px;
+    border: #cac2caab solid 1px;
+    resize: vertical; /* Allow resizing only vertically */
+    margin-right: 20px;
+}
+
+#comment-form form button{
+    background-color: #f38a82;
+    color: white;
+    border: none;
+    box-shadow: none;
+    border-radius: 5px;
+    font-family: 'century gothic';
+    font-weight: bold;
+    width: 100px;
+    height: 43px;
+    transition: all 0.4s ease;
+    cursor: pointer;
+} 
+
+#comment-form form button:hover{
+    background-color: #f04438;
+    transition: all 0.4s ease;
+} 
+
+.view-post-struct{
+    width: 600px;
+}
+
+#comments-list{
+    margin-bottom: 100px;
+}
+
+#comments-list .comment-sec{
+    display: flex;
+}
+
+#comments-list .comment-sec .line{
+    background-color: #cac2ca63;
+    width: 3px;
+    min-height: 100px;
+    margin-left: 50px;
+}
+
+#comments-list .comment-sec .comment-box{
+    background-color: white;
+    /* box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; */
+    /* border-radius: 5px; */
+    margin-left: 50px;
+    margin-top: 20px;
+    margin-bottom: -20px;
+    padding: 20px 10px 15px 20px;
+    width: 500px;
+    border: #cac2ca63 solid 1px;
+}
+
+#comments-list .comment-sec .comment-box h6{
+    font-size: 13px;
+    margin: 0 auto;
+}
+
+#comments-list .comment-sec .comment-box p{
+    font-size: 14px;
+    margin: 0 auto;
+    margin-top: -10px;
+}
+
+#comments-list .comment-sec .comment-box form button{
+    background: none;
+    border: none;
+    box-shadow: none;
+}
+
+#comments-list .comment-sec .comment-box .comment-option{
+    display: flex;
+    margin-top: -20px;
+    margin-bottom: -10px;
+}
+
+.heart{
+    width: 24px; /* pathのサイズ */
+	height: 24px; /* pathのサイズ */
+	background: #abaaab5c; /* 色 */
+	clip-path: path("M12 4.419c-2.826-5.695-11.999-4.064-11.999 3.27 0 7.27 9.903 10.938 11.999 15.311 2.096-4.373 12-8.041 12-15.311 0-7.327-9.17-8.972-12-3.27z");
+    transform: scale(0.7);
+    margin-top: -3px;
+}
+
+.heart:hover{
+	background: #FF5252; /* 色 */
+}
+
+/* ------------------------------------------ VIEW CATEGORIES ------------------------------------------------- */
+
+

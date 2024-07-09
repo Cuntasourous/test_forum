@@ -562,6 +562,19 @@ func getUserProfile(userID int) (UserProfile, error) {
 }
 
 func ViewCategoriesHandler(w http.ResponseWriter, r *http.Request) {
+	// Get the session ID from the cookie
+	sessionID, _ := getCookie(r, cookieName)
+	var userID int
+	err := db.QueryRow("SELECT user_id FROM sessions WHERE id = ?", sessionID).Scan(&userID)
+	if err != nil {
+		http.Redirect(w, r, "/login", http.StatusSeeOther)
+	}
+
+	var username string
+	err = db.QueryRow("SELECT username FROM users WHERE user_id = ?", userID).Scan(&username)
+	if err != nil {
+		http.Redirect(w, r, "/login", http.StatusSeeOther)
+	}
 	var categories []Category
 
 	rows, err := db.Query("SELECT category_id, category_name FROM Categories")
@@ -580,13 +593,23 @@ func ViewCategoriesHandler(w http.ResponseWriter, r *http.Request) {
 		categories = append(categories, category)
 	}
 
+	// Pass the categories to the template
+	data := struct {
+		LoggedInUser string
+		Categories   []Category
+	}{
+		LoggedInUser: username,
+		Categories:   categories,
+	}
+	fmt.Println(categories)
+
 	t, err := template.ParseFiles("templates/view_categories.html")
 	if err != nil {
 		http.Error(w, "Error parsing template", http.StatusInternalServerError)
 		return
 	}
 
-	err = t.Execute(w, categories)
+	err = t.Execute(w, data)
 	if err != nil {
 		// Log the error instead of sending it to the client, as headers have already been written
 		log.Printf("Error executing template: %v", err)
@@ -871,17 +894,13 @@ func handleViewPost(w http.ResponseWriter, r *http.Request) {
 	var userID int
 	err = db.QueryRow("SELECT user_id FROM sessions WHERE id = ?", sessionID).Scan(&userID)
 	if err != nil {
-		// http.Redirect(w, r, "/login", http.StatusSeeOther)
-		// return
 		fmt.Println("guest")
 	}
 
 	var username string
 	err = db.QueryRow("SELECT username FROM users WHERE user_id = ?", userID).Scan(&username)
 	if err != nil {
-		// http.Redirect(w, r, "/login", http.StatusSeeOther)
 		username = ""
-		// return
 	}
 
 	// Handle like and dislike actions
@@ -899,15 +918,20 @@ func handleViewPost(w http.ResponseWriter, r *http.Request) {
 	// Fetch the post data from the database using postID
 	post, err := getPostByID(postID)
 	if err != nil {
-		// Handle error, e.g., show an error message
 		http.Error(w, "Post not found", http.StatusNotFound)
+		return
+	}
+
+	// Fetch categories for this post
+	categories, err := getCategoriesByPostID(postID)
+	if err != nil {
+		http.Error(w, "Error fetching categories", http.StatusInternalServerError)
 		return
 	}
 
 	// Fetch comments for the post
 	comments, err := getCommentsByPostID(postID)
 	if err != nil {
-		// Handle error, e.g., show an error message
 		http.Error(w, "Error fetching comments", http.StatusInternalServerError)
 		return
 	}
@@ -920,6 +944,7 @@ func handleViewPost(w http.ResponseWriter, r *http.Request) {
 	// Render the view_post template
 	data := map[string]interface{}{
 		"Post":         post,
+		"Categories":   categories,
 		"Comments":     comments,
 		"LoggedInUser": username,
 	}
@@ -936,6 +961,31 @@ func handleViewPost(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Error executing template", http.StatusInternalServerError)
 		return
 	}
+}
+
+// New function to get categories for a post
+func getCategoriesByPostID(postID int) ([]string, error) {
+	rows, err := db.Query(`
+		SELECT c.category_name 
+		FROM Categories c
+		JOIN Post_Categories pc ON c.category_id = pc.category_id
+		WHERE pc.post_id = ?
+	`, postID)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	var categories []string
+	for rows.Next() {
+		var category string
+		if err := rows.Scan(&category); err != nil {
+			return nil, err
+		}
+		categories = append(categories, category)
+	}
+
+	return categories, nil
 }
 
 // func getPostIDFromURL(r *http.Request) (int, error) {

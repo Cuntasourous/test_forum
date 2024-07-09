@@ -4,41 +4,122 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="/static/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <h1>{{.Post.PostText}}</h1><p>{{.Post.PostDate}}</p>
-    <p>Posted by: {{.Post.Username}}</p>
-    <br>
-    Likes: <span>{{.Post.LikeCount}}</span> | Dislikes: <span>{{.Post.DislikeCount}}</span>
-    <br>
-    {{if $.LoggedInUser}}
+    <div id="topbar">
+        <img src="/static/img/LOGO.png" width="100px" height="auto" alt="logo"/>
+    </div>
+    <div id="flex">
+        <div id="navbar">
+            <!-- home -->
+            <a href="/home">
+                <div class="active">
+                    <img src="/static/img/home-icon.png" alt="home">
+                    Home
+                </div>
+            </a>
+            <!-- home -->
+            <a href="/view_categories">
+                <div class="nav-item">
+                    <img src="/static/img/home-icon.png" alt="home">
+                    Categories
+                </div>
+            </a>
+            <!-- create post -->
+            {{if .LoggedInUser}}
+            <a href="/create_post">
+                <div class="nav-item">
+                    <img src="/static/img/home-icon.png" alt="home">
+                    Create Post
+                </div>
+            </a>
+            {{end}}
+            <!-- profile -->
+            {{if .LoggedInUser}}
+            <a href="/profile">
+                <div class="nav-item">
+                    <img src="/static/img/home-icon.png" alt="home">
+                    Profile
+                </div>
+            </a>
+            {{end}}
+            <!-- logout -->
+            {{if .LoggedInUser}}
+            <a href="/logout">
+                <div class="nav-item">
+                    <img src="/static/img/home-icon.png" alt="home">
+                    Log out
+                </div>
+            </a>
+            {{else}}
+            <a href="/login">
+                <div class="nav-item">
+                    <img src="/static/img/home-icon.png" alt="home">
+                    Login
+                </div>
+            </a>
+            {{end}}
+        </div>
+    <div id="middle-posts">
+        <div class="greetings">
+            <br>
+            <br>
+        </div>
+        <div id="posts">
+            <div class="post-structure view-post-struct">
+                <div class="username">
+                    <h5>{{.Post.Username}}</h5>
+                    <p>posted on ({{.Post.PostDate}})</p>
+                </div>
+                <div class="post-category">
+                    {{range .Categories}}
+                    {{.}}
+                    {{end}}
+                </div>
+                <div class="post-text">
+                    {{.Post.PostText}}
+                </div>
+                <div class="post-options">
+                    <!-- {{if $.LoggedInUser}} -->
+                    <form method="POST" action="/like2/{{.Post.PostID}}">
+                        <button type="submit"><div class="heart"></div></button>
+                    </form>
+                    <b>
+                    Likes <span id="like-count-{{.Post.PostID}}">   {{.Post.LikeCount}}</span>
+                    </b>
+                    <form method="POST" action="/dislike2/{{.Post.PostID}}">
+                        <button type="submit"><div class="heart"></div></button>
+                    </form>
+                    <b>
+                    Dislikes <span id="dislike-count-{{.Post.PostID}}">{{.Post.DislikeCount}}</span>
+                </b>
+                    <!-- {{end}} -->
+                </div>
+            </div>
+        </div>
+        <div id="comment-form">
+            {{if .LoggedInUser}}
+                <form method="POST" action="">
+                    <textarea name="comment_text" placeholder="Enter your comment"></textarea>
+                    <button id="reply-button" type="submit">Reply</button>
+                </form>
+            {{else}}
+                <a href="/login">login to add a comment</a>
+            {{end}}
+        </div>
+
+
+    <!-- {{if $.LoggedInUser}}
         <form method="POST" action="/like2/{{.Post.PostID}}">
             <button type="submit">Like</button>
             </form>
             <form method="POST" action="/dislike2/{{.Post.PostID}}">
                 <button type="submit">Dislike</button>
             </form>
-    {{end}}
-    <ul id="comments-list">
-        {{range .Comments}}
-        <li>
-            <b>{{.Username}}</b> - {{.CommentText}} ({{.CommentDate}})
-            <br>
-            Likes: <span id="like-count-{{.CommentID}}">{{.LikeCount}}</span> | Dislikes: <span id="dislike-count-{{.CommentID}}">{{.DislikeCount}}</span>
-            <br>
-            {{if $.LoggedInUser}}
-                <form method="POST" action="/clike/{{.CommentID}}">
-                <button type="submit">Like</button>
-                </form>
-                <form method="POST" action="/cdislike/{{.CommentID}}">
-                    <button type="submit">Dislike</button>
-                </form>
-            {{end}}
-        </li>
-        {{end}}
-    </ul>
+    {{end}} -->
 
-    <h2>Add a Comment</h2>
+    <!-- <h2>Add a Comment</h2>
     {{if .LoggedInUser}}
         <form id="comment-form" method="POST" action="">
             <textarea name="comment_text" placeholder="Enter your comment"></textarea>
@@ -46,8 +127,36 @@
         </form>
     {{else}}
         <a href="/login">login to add a comment</a>
-    {{end}}
+    {{end}} -->
 
+    <div id="comments-list">
+        {{range .Comments}}
+        <div class="comment-sec">
+            <div class="line"></div>
+            <div class="comment-box">
+                <h6><b>{{.Username}}</b></h6>
+                <br>
+                 <p>{{.CommentText}}</p>
+                <br>
+                <br>
+                <div class="comment-option">
+                    {{if $.LoggedInUser}}
+                    <form method="POST" action="/clike/{{.CommentID}}">
+                    <button type="submit"><div class="heart"></div></button>
+                    </form>
+                    <span id="like-count-{{.CommentID}}">{{.LikeCount}}</span> 
+                    <form method="POST" action="/cdislike/{{.CommentID}}">
+                        <button type="submit"><div class="heart"></div></button>
+                    </form>
+                    <span id="dislike-count-{{.CommentID}}">{{.DislikeCount}}</span>
+                {{end}}
+                </div>
+            </div>
+        </div>
+        {{end}}
+    </div>
+</div>
+</div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
@@ -77,5 +186,10 @@
             });
         });
     </script>
+        <style>
+            body{
+                background-color: #fbfafb;
+            }
+        </style>
 </body>
 </html>
