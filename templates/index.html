@@ -107,6 +107,21 @@
         </div>
         <div id="news">
             <img src="/static/img/climate.png" width="300px" height="auto" alt="climate">
+            <div id="popular-category-box">
+                <h4>Popular Categories</h4>
+                {{range .PopularCategory}}
+                <!-- category list item -->
+                <a href="/category/{{.CategoryID}}">
+                    <div class="category-box">
+                        <div class="flex">
+                            <img src="/static/img/category - pink.png" alt="category-icon">
+                            <h6>{{.CategoryName}}</h6>
+                        </div>
+                        <p>{{.PostCount}} posts under this category</p>
+                    </div>
+                </a>
+                {{end}}
+            </div>
         </div>
     </div>
     

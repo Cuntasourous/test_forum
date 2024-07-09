@@ -58,6 +58,13 @@ type Category struct {
 	CategoryName string `json:"category_name"`
 }
 
+// popular category
+type PopularCategory struct {
+	CategoryID   int
+	CategoryName string
+	PostCount    int
+}
+
 // session
 type Session struct {
 	ID        string    `json:"id"`
@@ -1571,13 +1578,24 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// Fetch popular categories
+	// Fetch popular categories
+	popularCategories, err := getPopularCategories()
+	if err != nil {
+		log.Printf("Error fetching popular categories: %v", err)
+		// Instead of handling the error here, we'll pass an empty slice
+		popularCategories = []PopularCategory{}
+	}
+
 	// Create a struct to hold both the logged-in username and the users slice
 	data := struct {
-		LoggedInUser string
-		Posts        []Post
+		LoggedInUser    string
+		Posts           []Post
+		PopularCategory []PopularCategory
 	}{
-		LoggedInUser: username,
-		Posts:        posts,
+		LoggedInUser:    username,
+		Posts:           posts,
+		PopularCategory: popularCategories,
 	}
 
 	// Render the index template
@@ -1591,6 +1609,38 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Error executing template", http.StatusInternalServerError)
 		return
 	}
+}
+
+func getPopularCategories() ([]PopularCategory, error) {
+	query := `
+    SELECT c.category_id, c.category_name, COUNT(pc.post_id) as post_count
+    FROM Categories c
+    LEFT JOIN Post_Categories pc ON c.category_id = pc.category_id
+    GROUP BY c.category_id, c.category_name
+    ORDER BY post_count DESC
+    LIMIT 5
+    `
+
+	rows, err := db.Query(query)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	var categories []PopularCategory
+	for rows.Next() {
+		var cat PopularCategory
+		if err := rows.Scan(&cat.CategoryID, &cat.CategoryName, &cat.PostCount); err != nil {
+			return nil, err
+		}
+		categories = append(categories, cat)
+	}
+
+	if err = rows.Err(); err != nil {
+		return nil, err
+	}
+
+	return categories, nil
 }
 
 func LikeHandler2(w http.ResponseWriter, r *http.Request) {
