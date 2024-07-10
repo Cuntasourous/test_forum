@@ -4,9 +4,105 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Post</title>
+    <link href="/static/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <h3>Create a Post</h3>
+    <div id="topbar">
+        <img src="/static/img/LOGO.png" width="100px" height="auto" alt="logo"/>
+    </div>
+    <div id="flex">
+        <div id="navbar">
+            <!-- home -->
+            <a href="/home">
+                <div class="nav-item">
+                    <img src="/static/img/home-icon.png" alt="home">
+                    Home
+                </div>
+            </a>
+            <!-- home -->
+            <a href="/view_categories">
+                <div class="nav-item">
+                    <img src="/static/img/home-icon.png" alt="home">
+                    Categories
+                </div>
+            </a>
+            <!-- create post -->
+            {{if .LoggedInUser}}
+            <a href="/create_post">
+                <div class="active">
+                    <img src="/static/img/home-icon.png" alt="home">
+                    Create Post
+                </div>
+            </a>
+            {{end}}
+            <!-- profile -->
+            {{if .LoggedInUser}}
+            <a href="/profile">
+                <div class="nav-item">
+                    <img src="/static/img/home-icon.png" alt="home">
+                    Profile
+                </div>
+            </a>
+            {{end}}
+            <!-- logout -->
+            {{if .LoggedInUser}}
+            <a href="/logout">
+                <div class="nav-item">
+                    <img src="/static/img/home-icon.png" alt="home">
+                    Log out
+                </div>
+            </a>
+            {{else}}
+            <a href="/login">
+                <div class="nav-item">
+                    <img src="/static/img/home-icon.png" alt="home">
+                    Login
+                </div>
+            </a>
+            {{end}}
+        </div>
+    <div id="middle-posts">
+        <div class="greetings">
+            <br>
+            <h1>Create a Post</h1>
+            <br>
+        </div>
+        <div id="create-post">
+            <div class="post-structure">
+                <div class="flex" >
+                    <img src="/static/img/pfp.png" alt="pfp" class="pfp">
+                    <h3>{{.LoggedInUser}}</h3>
+                </div>
+                <form id="post-form" method="POST" action="/create_post">
+                    <textarea name="post_text" placeholder="Whats on your mind?" required></textarea>
+                    <input class="pink-rounded-button" type="submit" value="Post">
+                </div>
+            </div>
+            <h4>Categories:</h4>
+            <div id="category-checklist">
+                {{range .Categories}}
+                <div class="category-item">
+                    <input type="checkbox" name="categories" value="{{.CategoryName}}">
+                    <label for="{{.CategoryName}}">{{.CategoryName}}</label><br>
+                </div>
+                {{end}}
+            </div>
+        </form>
+        <br>
+        <div id="cat-cta-btn">
+            <a class="pink-rounded-button" href="/create_category">Create a new category</a>
+            <a class="underline-btn" href="/home">Cancel</a>
+        </div>
+        </div>
+
+        <style>
+            body{
+                background-color: #fbfafb;
+            }
+        </style>
+
+
+    <!-- <h3>Create a Post</h3>
     <br>
     <br>
     <form id="post-form" method="POST" action="/create_post">
@@ -21,6 +117,6 @@
         </div>
         <input type="submit" value="Post">
     </form>
-    <a href="/home">Cancel</a>
+    <a href="/home">Cancel</a> -->
 </body>
 </html>

@@ -1654,6 +1654,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
         JOIN Post_Categories pc ON p.post_id = pc.post_id
         JOIN Categories c ON pc.category_id = c.category_id
         GROUP BY p.post_id
+        ORDER BY p.post_date DESC
     `)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)

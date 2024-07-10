@@ -83,9 +83,9 @@ input:focus {
     outline: none;
   }
 
-  textarea:focus {
+textarea:focus {
     outline: none;
-  }
+}
 
 .sign-form form .account-int {
     padding-top: 15px;
@@ -321,6 +321,7 @@ body{
     margin-bottom: 30px;
     padding: 15px 25px;
     min-width: 530px;
+    max-width: 600px;
 }
 
 .post-structure a {
@@ -621,11 +622,13 @@ body{
     transition: all 0.4s ease;
     cursor: pointer;
     padding: 10px 15px;
+    opacity: 0.85;
 }
 
 .pink-rounded-button:hover{
     background-color: #f3685e;
     transition: all 0.4s ease;
+    opacity: 1;
 } 
 
 #second-bar .pink-rounded-button{
@@ -675,6 +678,81 @@ body{
 }
 
 .category-form p a:hover{
+    text-decoration: underline solid 2px #d971717d;
+    transition: all 0.3s ease;
+}
+
+.pfp{
+    width: 40px;
+    height: 40px;
+}
+
+/* .create-post .post-structure .username{
+    display: flex;
+} */
+
+#create-post .post-structure{
+    width: 500px;
+}
+
+#create-post .post-structure .flex h3{
+    margin-left: 20px;
+    margin-top: 7px;
+}
+
+#create-post .post-structure form textarea{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 15px;
+    color: #444344;
+    font-family: 'century gothic';
+    padding: 5px 10px;
+    border: none;
+    width: 500px;
+    height: 60px;
+    resize: vertical;
+}
+
+#create-post .post-structure form .pink-rounded-button{
+    width: 100px;
+    text-transform: uppercase;
+    margin-left: 80%;
+    letter-spacing: 2px;
+}
+
+#category-checklist{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+#cat-cta-btn{
+    margin-top: 75px;
+}
+
+#cat-cta-btn a{
+    text-decoration: none;
+    margin-right: 40px;
+}
+
+#cat-cta-btn .underline-btn{
+    text-decoration: underline solid 2px #d9717100;
+    color: black;
+    transition: all 0.3s ease;
+}
+
+#cat-cta-btn .underline-btn:hover{
+    text-decoration: underline solid 2px #d971717d;
+    transition: all 0.3s ease;
+}
+
+.underline-btn{
+    text-decoration: underline solid 2px #d9717100;
+    color: black;
+    transition: all 0.3s ease;
+}
+
+.underline-btn:hover{
     text-decoration: underline solid 2px #d971717d;
     transition: all 0.3s ease;
 }
