@@ -156,6 +156,23 @@
         {{end}}
     </div>
 </div>
+<div id="news">
+    <div id="popular-category-box">
+        <h4>Popular Categories</h4>
+        {{range .PopularCategory}}
+        <!-- category list item -->
+        <a href="/category/{{.CategoryID}}">
+            <div class="category-box">
+                <div class="flex">
+                    <img src="/static/img/category - pink.png" alt="category-icon">
+                    <h6>{{.CategoryName}}</h6>
+                </div>
+                <p>{{.PostCount}} posts under this category</p>
+            </div>
+        </a>
+        {{end}}
+    </div>
+</div>
 </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>

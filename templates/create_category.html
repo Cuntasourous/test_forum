@@ -4,12 +4,106 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Category</title>
+    <link href="/static/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <form id="post-form" method="POST">
+    <!-- <form id="post-form" method="POST">
         <input name="category_name" placeholder="Enter category name">
         <input type="submit" value="Create Category">
     </form>
     <a href="/home">Cancel</a>
+    <div id="topbar">
+        <img src="/static/img/LOGO.png" width="100px" height="auto" alt="logo"/>
+    </div> -->
+    <div id="topbar">
+        <img src="/static/img/LOGO.png" width="100px" height="auto" alt="logo"/>
+    </div>
+    <div id="flex">
+        <div id="navbar">
+            <!-- home -->
+            <a href="/home">
+                <div class="nav-item">
+                    <img src="/static/img/home-icon.png" alt="home">
+                    Home
+                </div>
+            </a>
+            <!-- home -->
+            <a href="/view_categories">
+                <div class="active">
+                    <img src="/static/img/category - white.png" alt="category">
+                    Categories
+                </div>
+            </a>
+            <!-- create post -->
+            {{if .LoggedInUser}}
+            <a href="/create_post">
+                <div class="nav-item">
+                    <img src="/static/img/home-icon.png" alt="home">
+                    Create Post
+                </div>
+            </a>
+            {{end}}
+            <!-- profile -->
+            {{if .LoggedInUser}}
+            <a href="/profile">
+                <div class="nav-item">
+                    <img src="/static/img/home-icon.png" alt="home">
+                    Profile
+                </div>
+            </a>
+            {{end}}
+            <!-- logout -->
+            {{if .LoggedInUser}}
+            <a href="/logout">
+                <div class="nav-item">
+                    <img src="/static/img/home-icon.png" alt="home">
+                    Log out
+                </div>
+            </a>
+            {{else}}
+            <a href="/login">
+                <div class="nav-item">
+                    <img src="/static/img/home-icon.png" alt="home">
+                    Login
+                </div>
+            </a>
+            {{end}}
+        </div>
+        <div id="middle-posts">
+            <div class="greetings">
+                <!-- <h1>Create Category</h1> -->
+                <br>
+            </div>
+            <div class="category-form">
+                <h1>Create a new Category</h1>
+                <p>Enter a name for your new category. This will help you organize your posts and make it easier for others to find them.</p>
+                <form id="post-form" method="POST">
+                    <input class="account-int" name="category_name" placeholder="Enter category name"><br>
+                    <input class="pink-rounded-button" type="submit" value="Create Category">
+                </form>
+                <p><a href="/home">Cancel</a></p>
+            </div>
+            <!-- <div id="category-list">
+                {{range .PopularCategory}}
+                <a href="/category/{{.CategoryID}}">
+                    <div class="category-box">
+                        {{.CategoryName}}
+                    </div>
+                </a>
+                {{end}}
+            </div> -->
+        </div>
+    </div>
+
+    <style>
+        body{
+            /* background-color: #fbfafb; */
+            background-image: url(/static/img/background.png);
+            background-size: cover; /* Optional: Cover the entire viewport */
+            background-repeat: no-repeat; /* Optional: Prevent repeating */
+            background-attachment: fixed; /* Make the background fixed */
+        }
+    </style>
+
 </body>
 </html>

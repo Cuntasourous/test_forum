@@ -874,6 +874,53 @@ func getCommentsByPostID(postID int) ([]Comment, error) {
 	return comments, nil
 }
 
+func renderCategoryForm(w http.ResponseWriter, r *http.Request) {
+	// log.Println("Rendering category creation form")
+
+	sessionID, _ := getCookie(r, cookieName)
+	var userID int
+	err := db.QueryRow("SELECT user_id FROM sessions WHERE id = ?", sessionID).Scan(&userID)
+	if err != nil {
+		fmt.Println("guest")
+	}
+
+	var username string
+	err = db.QueryRow("SELECT username FROM users WHERE user_id = ?", userID).Scan(&username)
+	if err != nil {
+		username = ""
+	}
+
+	popularCategories, err := getPopularCategories()
+	if err != nil {
+		log.Printf("Error fetching popular categories: %v", err)
+		// Instead of handling the error here, we'll pass an empty slice
+		popularCategories = []PopularCategory{}
+	}
+
+	// Create a struct to hold both the logged-in username and the users slice
+	data := struct {
+		LoggedInUser    string
+		PopularCategory []PopularCategory
+	}{
+		LoggedInUser:    username,
+		PopularCategory: popularCategories,
+	}
+
+	t, err := template.ParseFiles("templates/create_category.html")
+	if err != nil {
+		log.Printf("Error parsing template: %v", err)
+		http.Error(w, "Internal server error", http.StatusInternalServerError)
+		return
+	}
+
+	err = t.Execute(w, data)
+	if err != nil {
+		log.Printf("Error executing template: %v", err)
+		http.Error(w, "Internal server error", http.StatusInternalServerError)
+		return
+	}
+}
+
 // func getPostByID(postID int) (Post, error) {
 // 	var post Post
 // 	err := db.QueryRow("SELECT post_id, user_id, post_text FROM Posts WHERE post_id = ?", postID).Scan(&post.PostID, &post.UserID, &post.PostText)
@@ -956,12 +1003,21 @@ func handleViewPost(w http.ResponseWriter, r *http.Request) {
 		handleAddComment(w, r, postID)
 	}
 
+	// Fetch popular categories
+	popularCategories, err := getPopularCategories()
+	if err != nil {
+		log.Printf("Error fetching popular categories: %v", err)
+		// Instead of handling the error here, we'll pass an empty slice
+		popularCategories = []PopularCategory{}
+	}
+
 	// Render the view_post template
 	data := map[string]interface{}{
-		"Post":         post,
-		"Categories":   categories,
-		"Comments":     comments,
-		"LoggedInUser": username,
+		"Post":            post,
+		"Categories":      categories,
+		"Comments":        comments,
+		"LoggedInUser":    username,
+		"PopularCategory": popularCategories,
 	}
 	// Parse the template file
 	t, err := template.ParseFiles("templates/view_post.html")
@@ -1191,24 +1247,6 @@ func handleCreateCategory(w http.ResponseWriter, r *http.Request) {
 
 	log.Println("Category created successfully")
 	http.Redirect(w, r, "/home", http.StatusSeeOther)
-}
-
-func renderCategoryForm(w http.ResponseWriter, r *http.Request) {
-	log.Println("Rendering category creation form")
-
-	t, err := template.ParseFiles("templates/create_category.html")
-	if err != nil {
-		log.Printf("Error parsing template: %v", err)
-		http.Error(w, "Internal server error", http.StatusInternalServerError)
-		return
-	}
-
-	err = t.Execute(w, nil)
-	if err != nil {
-		log.Printf("Error executing template: %v", err)
-		http.Error(w, "Internal server error", http.StatusInternalServerError)
-		return
-	}
 }
 
 func LikeHandler(w http.ResponseWriter, r *http.Request) {
@@ -1643,7 +1681,6 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Fetch popular categories
 	// Fetch popular categories
 	popularCategories, err := getPopularCategories()
 	if err != nil {
