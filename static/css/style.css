@@ -5,7 +5,9 @@
 
 /* ------------------------------------------ REGISTER & LOGIN ------------------------------------------------- */
 
-
+body{
+    overflow-x: hidden;
+}
 
 .banner{
     background-color: white;
@@ -755,4 +757,82 @@ body{
 .underline-btn:hover{
     text-decoration: underline solid 2px #d971717d;
     transition: all 0.3s ease;
+}
+
+#right-profile{
+    margin-left: 300px;
+    margin-top: -10px;
+    width: 100%;
+    background-color: white;
+    height: 900px;
+}
+
+#right-profile .greetings{
+    padding-left: 50px;
+}
+
+#right-profile h3{
+    color: #5c5b5c;
+}
+
+#right-profile .profile-banner{
+    z-index: 1;
+    position: relative;
+}
+
+#right-profile .profile-banner img{
+    width: 100.7%;
+    z-index: 2;
+}
+
+#right-profile #profile-info{
+    background-color: white;
+    padding: 5px 10px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    width: 250px;
+    z-index: 5;
+    margin-top: -70px;
+    position: absolute;
+    margin-left: 40px;
+}
+
+#right-profile #profile-info .profile-pic{
+    text-align: center;
+    padding: 20px 5px;
+}
+
+#right-profile #profile-info .profile-pic h2{
+    font-size: 23px;
+    color: #5c5b5c;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
+#right-profile #profile-info .profile-pic p{
+    color: #ABAAAB;
+    font-size: 13px;
+    margin: 0 auto;
+    margin-top: 5px;
+}
+
+#right-profile #profile-info .profile-pic .member h6{
+    color: #fa7268;
+    text-transform: uppercase;
+    font-size: 12px;
+    margin: 0 auto;
+    margin-top: 14px;
+}
+
+#right-profile #profile-info .profile-pic .member p{
+    color: #ABAAAB;
+    font-size: 15px;
+}
+
+#right-profile #profile-info .profile-pic .stats .stat-column{
+    border-top: #8982895c solid 2px;
+    padding: 5px 0;
+    display: flex;
+    font-size: 20px;
+    font-weight: normal;
+    margin: 0 auto;
 }

@@ -3,9 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
+    <title>{{.Username}} Profile</title>
+    <link href="/static/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+    <div id="topbar">
+        <img src="/static/img/LOGO.png" width="100px" height="auto" alt="logo"/>
+    </div>
+    <div id="flex">
+        <div id="navbar">
+            <!-- home -->
+            <a href="/home">
+                <div class="nav-item">
+                    <img src="/static/img/home-icon.png" alt="home">
+                    Home
+                </div>
+            </a>
+            <!-- home -->
+            <a href="/view_categories">
+                <div class="nav-item">
+                    <img src="/static/img/category - white.png" alt="category">
+                    Categories
+                </div>
+            </a>
+            <!-- create post -->
+            {{if .Username}}
+            <a href="/create_post">
+                <div class="nav-item">
+                    <img src="/static/img/home-icon.png" alt="home">
+                    Create Post
+                </div>
+            </a>
+            {{end}}
+            <!-- profile -->
+            {{if .Username}}
+            <a href="/profile">
+                <div class="active">
+                    <img src="/static/img/home-icon.png" alt="home">
+                    Profile
+                </div>
+            </a>
+            {{end}}
+            <!-- logout -->
+            {{if .Username}}
+            <a href="/logout">
+                <div class="nav-item">
+                    <img src="/static/img/home-icon.png" alt="home">
+                    Log out
+                </div>
+            </a>
+            {{else}}
+            <a href="/login">
+                <div class="nav-item">
+                    <img src="/static/img/home-icon.png" alt="home">
+                    Login
+                </div>
+            </a>
+            {{end}}
+        </div>
+        <div id="right-profile">
+            <div class="greetings">
+                {{if .Username}}
+                <h3>Profile</h3>
+                {{end}}
+            </div>
+            <!-- bg -->
+            <div class="profile-banner">
+                <img src="/static/img/bg-1.png" width="100%">
+            </div>
+            <div id="profile-info">
+                <div class="profile-pic">
+                    <img src="/static/img/pfp.png" width="150px" height="150px" alt="pfp">
+                    <h2><b>{{.Username}}</b></h2>
+                    <p>{{.Email}}</p>
+                    <div class="member">
+                        <h6>Member since:</h6>
+                        <p>{{.DateCreated.Format "January 2, 2006"}}</p>
+                    </div>
+                    <div class="stats">
+                        <div class="stat-column">
+                            <h4>Posts Created</h4>
+                            <h5>5</h5>
+                        </div>
+                        <div class="stat-column">
+                            <h4>Posts Created</h4>
+                            <h5>5</h5>
+                        </div>
+                        <div class="stat-column">
+                            <h4>Posts Created</h4>
+                            <h5>5</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        body{
+            /* background-color: #fbfafb; */
+            background-image: url(/static/img/background.png);
+            background-size: cover; /* Optional: Cover the entire viewport */
+            background-repeat: no-repeat; /* Optional: Prevent repeating */
+            background-attachment: fixed; /* Make the background fixed */
+        }
+    </style>
+<!-- 
     <h1>Profile for {{.Username}}</h1>
     <p>Email: {{.Email}}</p>
     <p>Member since: {{.DateCreated.Format "January 2, 2006"}}</p>
@@ -35,6 +138,6 @@
         {{else}}
         <li>No liked posts yet.</li>
         {{end}}
-    </ul>
+    </ul> -->
 </body>
 </html>
