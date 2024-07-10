@@ -601,7 +601,6 @@ func ViewCategoriesHandler(w http.ResponseWriter, r *http.Request) {
 		LoggedInUser: username,
 		Categories:   categories,
 	}
-	fmt.Println(categories)
 
 	t, err := template.ParseFiles("templates/view_categories.html")
 	if err != nil {
@@ -617,6 +616,20 @@ func ViewCategoriesHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ViewCategoryPostsHandler(w http.ResponseWriter, r *http.Request) {
+	// Get the session ID from the cookie
+	sessionID, _ := getCookie(r, cookieName)
+	var userID int
+	err := db.QueryRow("SELECT user_id FROM sessions WHERE id = ?", sessionID).Scan(&userID)
+	if err != nil {
+		http.Redirect(w, r, "/login", http.StatusSeeOther)
+	}
+
+	var username string
+	err = db.QueryRow("SELECT username FROM users WHERE user_id = ?", userID).Scan(&username)
+	if err != nil {
+		http.Redirect(w, r, "/login", http.StatusSeeOther)
+	}
+
 	// Extract the category ID from the URL
 	path := strings.TrimPrefix(r.URL.Path, "/category/")
 	categoryID, err := strconv.Atoi(path)
@@ -666,9 +679,11 @@ func ViewCategoryPostsHandler(w http.ResponseWriter, r *http.Request) {
 	data := struct {
 		CategoryName string
 		Posts        []Post
+		LoggedInUser string
 	}{
 		CategoryName: categoryName,
 		Posts:        posts,
+		LoggedInUser: username,
 	}
 
 	// Parse and execute the template

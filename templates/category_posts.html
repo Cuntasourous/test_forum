@@ -4,21 +4,119 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Posts in {{.CategoryName}}</title>
+    <link href="/static/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <h1>Posts in {{.CategoryName}}</h1>
-    {{if .Posts}}
-        {{range .Posts}}
-            <div class="post">
-                <h2><a href="/view_post/{{.PostID}}">{{.PostText}}</a></h2>
-                <p>Posted by: {{.Username}}</p>
-                <p>Date: {{.PostDate}}</p>
-                <p>Likes: {{.LikeCount}} | Dislikes: {{.DislikeCount}}</p>
+    <div id="topbar">
+        <img src="/static/img/LOGO.png" width="100px" height="auto" alt="logo"/>
+    </div>
+    <div id="flex">
+        <div id="navbar">
+            <!-- home -->
+            <a href="/home">
+                <div class="nav-item">
+                    <img src="/static/img/home-icon.png" alt="home">
+                    Home
+                </div>
+            </a>
+            <!-- home -->
+            <a href="/view_categories">
+                <div class="active">
+                    <img src="/static/img/category - white.png" alt="category">
+                    Categories
+                </div>
+            </a>
+            <!-- create post -->
+            {{if .LoggedInUser}}
+            <a href="/create_post">
+                <div class="nav-item">
+                    <img src="/static/img/home-icon.png" alt="home">
+                    Create Post
+                </div>
+            </a>
+            {{end}}
+            <!-- profile -->
+            {{if .LoggedInUser}}
+            <a href="/profile">
+                <div class="nav-item">
+                    <img src="/static/img/home-icon.png" alt="home">
+                    Profile
+                </div>
+            </a>
+            {{end}}
+            <!-- logout -->
+            {{if .LoggedInUser}}
+            <a href="/logout">
+                <div class="nav-item">
+                    <img src="/static/img/home-icon.png" alt="home">
+                    Log out
+                </div>
+            </a>
+            {{else}}
+            <a href="/login">
+                <div class="nav-item">
+                    <img src="/static/img/home-icon.png" alt="home">
+                    Login
+                </div>
+            </a>
+            {{end}}
+        </div>
+        <div id="middle-posts">
+            <div class="greetings">
+                <br>
+                <br>
+                <h1>Posts in {{.CategoryName}}</h1>
             </div>
-        {{end}}
-    {{else}}
-        <p>No posts found in this category.</p>
-    {{end}}
-    <a href="/view_categories">Back to Categories</a>
+            <div id="posts">
+                {{if .Posts}}
+                    {{range .Posts}}
+                    <div class="post-structure">
+                        <a href="/view_post/{{.PostID}}">
+                        <div class="username">
+                            <h5>{{.Username}}</h5>
+                            <p>posted on ({{.PostDate}})</p>
+                        </div>
+                        <div class="post-category">
+                            {{range .Categories}}
+                            {{.}}
+                            {{end}}
+                        </div>
+                        <div class="post-text">
+                            {{.PostText}}
+                        </div>
+                    </a>
+                        <div class="post-options">
+                            <!-- {{if $.LoggedInUser}} -->
+                            <!-- <form method="POST" action="/like/{{.PostID}}">
+                                <button type="submit"><div class="heart"></div></button>
+                            </form> -->
+                            <b>
+                            Likes <span id="like-count-{{.PostID}}">   {{.LikeCount}}</span>
+                            </b>
+                            <!-- <form method="POST" action="/dislike/{{.PostID}}">
+                                <button type="submit"><div class="heart"></div></button>
+                            </form> -->
+                            <b>
+                            Dislikes <span id="dislike-count-{{.PostID}}">{{.DislikeCount}}</span>
+                        </b>
+                            <!-- {{end}} -->
+                        </div>
+                    </div>
+                    {{end}}
+                {{else}}
+                    <p>No posts found in this category.</p>
+                {{end}}
+            </div>
+        </div>
+    </div>
+    <style>
+        body{
+            /* background-color: #fbfafb; */
+            background-image: url(/static/img/background.png);
+            background-size: cover; /* Optional: Cover the entire viewport */
+            background-repeat: no-repeat; /* Optional: Prevent repeating */
+            background-attachment: fixed; /* Make the background fixed */
+        }
+    </style>
 </body>
 </html>

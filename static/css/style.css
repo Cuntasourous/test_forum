@@ -573,4 +573,57 @@ body{
 
 /* ------------------------------------------ VIEW CATEGORIES ------------------------------------------------- */
 
+#category-list{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns */
+    gap: 10px;
+}
 
+#category-list a{
+    text-decoration: none;
+    color: #444344;
+}
+
+#category-list a .category-box{
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    border-radius: 5px;
+    margin-top: 20px;
+    padding: 20px 0;
+    width: 230px;
+    border: #cac2ca63 solid 1px;
+    text-align: center;
+    margin-right: 20px;
+    font-weight: bold;
+    transition: all 0.4s ease;
+}
+
+#category-list a .category-box:hover{
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    transition: all 0.4s ease;
+}
+
+.pink-rounded-button{
+    background-color: #f38a82;
+    color: white;
+    border: none;
+    box-shadow: none;
+    border-radius: 5px;
+    font-family: 'century gothic';
+    font-weight: bold;
+    /* width: 100px; */
+    height: 43px;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    padding: 10px 15px;
+}
+
+.pink-rounded-button:hover{
+    background-color: #f3685e;
+    transition: all 0.4s ease;
+} 
+
+#second-bar .pink-rounded-button{
+    margin-left: 80%;
+    margin-bottom: 40px;
+}

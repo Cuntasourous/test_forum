@@ -65,21 +65,33 @@
             <div class="greetings">
                 <h1>Categories</h1>
                 <br>
+            </div>
+            <div id="second-bar">
+                <a href="/create_category">
+                    <button class="pink-rounded-button">
+                        Create a new category
+                    </button>
+                </a><br>
+            </div>
+            <div id="category-list">
                 {{range .Categories}}
-                    <a href="/category/{{.CategoryID}}">{{.CategoryName}}</a><br>
+                <a href="/category/{{.CategoryID}}">
+                    <div class="category-box">
+                        {{.CategoryName}}
+                    </div>
+                </a>
                 {{end}}
             </div>
         </div>
     </div>
 
-    <!-- <h2>Categories</h2>
-    {{range .}}
-        <a href="/category/{{.CategoryID}}">{{.CategoryName}}</a><br>
-    {{end}} -->
-
     <style>
         body{
-            background-color: #fbfafb;
+            /* background-color: #fbfafb; */
+            background-image: url(/static/img/background.png);
+            background-size: cover; /* Optional: Cover the entire viewport */
+            background-repeat: no-repeat; /* Optional: Prevent repeating */
+            background-attachment: fixed; /* Make the background fixed */
         }
     </style>
 </body>
