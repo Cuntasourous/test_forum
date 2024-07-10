@@ -943,3 +943,41 @@ body{
   .posts.active, .comments.active, .liked-posts.active {
     display: block; /* Show the active content section */
   }
+
+.comments a, .liked-posts a, .posts a {
+    text-decoration: none;
+    color: #444344;
+}
+
+.comments a .comment-box{
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    border-radius: 5px;
+    margin-left: 50px;
+    margin-top: 20px;
+    margin-bottom: -20px;
+    padding: 20px 10px 15px 20px;
+    width: 500px;
+    border: #cac2ca63 solid 1px;
+}
+
+.comment-sec .comment-box h6{
+    font-size: 13px;
+    margin: 0 auto;
+}
+
+.comment-sec .comment-box p{
+    font-size: 14px;
+    margin: 0 auto;
+    margin-top: -10px;
+}
+
+.comment-stats{
+    display: flex;
+    margin-top: -20px;
+    margin-bottom: -10px;
+    border-top: #4443447c solid 1px;
+    color: #7777778d;
+    font-weight: bold;
+    text-transform: uppercase;
+}

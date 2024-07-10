@@ -98,12 +98,15 @@ type CommentDislikes struct {
 }
 
 type UserProfile struct {
-	Username    string
-	Email       string
-	DateCreated time.Time
-	Posts       []Post
-	Comments    []Comment
-	LikedPosts  []Post
+	Username       string
+	Email          string
+	DateCreated    time.Time
+	Posts          []Post
+	Comments       []Comment
+	LikedPosts     []Post
+	PostCount      int
+	CommentCount   int
+	LikedPostCount int
 }
 
 func main() {
@@ -507,9 +510,9 @@ func getUserProfile(userID int) (UserProfile, error) {
 	}
 	profile.Username = user.Username
 	profile.Email = user.Email
-	profile.DateCreated, _ = time.Parse("2006-01-02 15:04:05", user.DateCreated) // Adjust the format to match your database
+	profile.DateCreated, _ = time.Parse("2006-01-02 15:04:05", user.DateCreated)
 
-	// Fetch user's posts
+	// Fetch user's posts and count
 	rows, err := db.Query("SELECT post_id, user_id, post_text, post_date, like_count, dislike_count FROM Posts WHERE user_id = ?", userID)
 	if err != nil {
 		return profile, err
@@ -523,8 +526,9 @@ func getUserProfile(userID int) (UserProfile, error) {
 		}
 		profile.Posts = append(profile.Posts, post)
 	}
+	profile.PostCount = len(profile.Posts)
 
-	// Fetch user's comments
+	// Fetch user's comments and count
 	rows, err = db.Query("SELECT comment_id, post_id, user_id, comment_text, comment_date, like_count, dislike_count FROM Comments WHERE user_id = ?", userID)
 	if err != nil {
 		return profile, err
@@ -538,8 +542,9 @@ func getUserProfile(userID int) (UserProfile, error) {
 		}
 		profile.Comments = append(profile.Comments, comment)
 	}
+	profile.CommentCount = len(profile.Comments)
 
-	// Fetch user's liked posts
+	// Fetch user's liked posts and count
 	rows, err = db.Query(`
         SELECT p.post_id, p.user_id, p.post_text, p.post_date, p.like_count, p.dislike_count
         FROM Posts p
@@ -557,6 +562,7 @@ func getUserProfile(userID int) (UserProfile, error) {
 		}
 		profile.LikedPosts = append(profile.LikedPosts, post)
 	}
+	profile.LikedPostCount = len(profile.LikedPosts)
 
 	return profile, nil
 }

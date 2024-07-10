@@ -84,15 +84,15 @@
                         <div class="stats">
                             <div class="stat-column">
                                 <h4>Posts Created</h4>
-                                <h5>5</h5>
+                                <h5>{{.PostCount}}</h5>
                             </div>
                             <div class="stat-column">
                                 <h4>Comments Created</h4>
-                                <h5>5</h5>
+                                <h5>{{.CommentCount}}</h5>
                             </div>
                             <div class="stat-column">
                                 <h4>Posts Liked</h4>
-                                <h5>5</h5>
+                                <h5>{{.LikedPostCount}}</h5>
                             </div>
                             <div class="stat-column"></div>
                             <a href="/logout">
@@ -114,22 +114,20 @@
                         <!-- Your posts content here -->
                         {{if .Posts}}
                         {{range .Posts}}
-                          <div class="post-structure">
-                            <a href="/view_post/{{.PostID}}">
+                        <a href="/view_post/{{.PostID}}">
+                        <div class="post-structure">
                               <div class="username">
                                 <h5>{{.Username}}</h5>
                                 <p>posted on ({{.PostDate}})</p>
                               </div>
-                              <div class="post-category">
-                                <!-- Assuming you have Categories associated with each post -->
-                                <!-- {{range .Categories}}
+                              <!-- <div class="post-category">
+                                {{range .Categories}}
                                   {{.}}
-                                {{end}} -->
-                              </div>
+                                {{end}}
+                              </div> -->
                               <div class="post-text">
                                 {{.PostText}}
                               </div>
-                            </a>
                             <div class="post-options">
                               <b>
                                 Likes <span id="like-count-{{.PostID}}">   {{.LikeCount}}</span>
@@ -139,7 +137,8 @@
                                 Dislikes <span id="dislike-count-{{.PostID}}">{{.DislikeCount}}</span>
                               </b>
                             </div>
-                          </div>
+                        </div>
+                        </a>
                         {{end}}
                       {{else}}
                         <p>No posts found.</p>
@@ -147,24 +146,59 @@
                     </div>
                 
                     <div class="comments">
-                        <ul>
                             {{range .Comments}}
-                            <li>On post <a href="/view_post/{{.PostID}}">View Post</a>: {{.CommentText}}</li>
+                            <a href="/view_post/{{.PostID}}"></a>
+                            <div class="post-structure">
+                                  <div class="username">
+                                    <h5>{{.Username}}</h5>
+                                    <p>posted on ({{.CommentDate}})</p>
+                                  </div>
+                                  <div class="post-text">
+                                    {{.CommentText}}
+                                  </div>
+                                
+                                <div class="post-options">
+                                  <b>
+                                    Likes <span id="like-count-{{.PostID}}">   {{.LikeCount}}</span>
+                                  </b>
+                                  <b>
+                                    Dislikes <span id="dislike-count-{{.PostID}}">{{.DislikeCount}}</span>
+                                  </b>
+                                </div>
+                            </div>
+                        </a>
                             {{else}}
                             <li>No comments yet.</li>
                             {{end}}
-                        </ul>
                     </div>
                 
                     <div class="liked-posts">
-                        <h2>Posts You've Liked</h2>
-                        <ul>
                             {{range .LikedPosts}}
-                            <li><a href="/view_post/{{.PostID}}">{{.PostText}}</a></li>
+                            <a href="/view_post/{{.PostID}}">
+                                <a href="/view_post/{{.PostID}}">
+                                    <div class="post-structure">
+                                          <div class="username">
+                                            <h5>{{.Username}}</h5>
+                                            <p>posted on ({{.PostDate}})</p>
+                                          </div>
+                                          <div class="post-text">
+                                            {{.PostText}}
+                                          </div>
+                                        <div class="post-options">
+                                          <b>
+                                            Likes <span id="like-count-{{.PostID}}">   {{.LikeCount}}</span>
+                                          </b>
+            
+                                          <b>
+                                            Dislikes <span id="dislike-count-{{.PostID}}">{{.DislikeCount}}</span>
+                                          </b>
+                                        </div>
+                                    </div>
+                                    </a>
+                            </a>
                             {{else}}
-                            <li>No liked posts yet.</li>
+                            <p>No liked posts yet.</p> 
                             {{end}}
-                        </ul> 
                     </div>
                 </div>
             </div>
