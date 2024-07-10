@@ -71,28 +71,100 @@
             <div class="profile-banner">
                 <img src="/static/img/bg-1.png" width="100%">
             </div>
-            <div id="profile-info">
-                <div class="profile-pic">
-                    <img src="/static/img/pfp.png" width="150px" height="150px" alt="pfp">
-                    <h2><b>{{.Username}}</b></h2>
-                    <p>{{.Email}}</p>
-                    <div class="member">
-                        <h6>Member since:</h6>
-                        <p>{{.DateCreated.Format "January 2, 2006"}}</p>
+            <div id="user-info">
+                <div id="profile-info">
+                    <div class="profile-pic">
+                        <img src="/static/img/pfp.png" width="150px" height="150px" alt="pfp">
+                        <h2><b>{{.Username}}</b></h2>
+                        <p>{{.Email}}</p>
+                        <div class="member">
+                            <h6>Member since:</h6>
+                            <p>{{.DateCreated.Format "January 2, 2006"}}</p>
+                        </div>
+                        <div class="stats">
+                            <div class="stat-column">
+                                <h4>Posts Created</h4>
+                                <h5>5</h5>
+                            </div>
+                            <div class="stat-column">
+                                <h4>Comments Created</h4>
+                                <h5>5</h5>
+                            </div>
+                            <div class="stat-column">
+                                <h4>Posts Liked</h4>
+                                <h5>5</h5>
+                            </div>
+                            <div class="stat-column"></div>
+                            <a href="/logout">
+                                <button class="outline-pink-btn">Logout</button>
+                            </a>
+                        </div>
                     </div>
-                    <div class="stats">
-                        <div class="stat-column">
-                            <h4>Posts Created</h4>
-                            <h5>5</h5>
-                        </div>
-                        <div class="stat-column">
-                            <h4>Posts Created</h4>
-                            <h5>5</h5>
-                        </div>
-                        <div class="stat-column">
-                            <h4>Posts Created</h4>
-                            <h5>5</h5>
-                        </div>
+                </div>
+            </div>
+            <div id="user-history" class="container">
+                <div class="tabs">
+                    <div class="tab active" data-target="posts">Posts</div>
+                    <div class="tab" data-target="comments">Comments</div>
+                    <div class="tab" data-target="liked-posts">Liked Posts</div>
+                </div>
+                
+                <div class="content">
+                    <div class="posts active">
+                        <!-- Your posts content here -->
+                        {{if .Posts}}
+                        {{range .Posts}}
+                          <div class="post-structure">
+                            <a href="/view_post/{{.PostID}}">
+                              <div class="username">
+                                <h5>{{.Username}}</h5>
+                                <p>posted on ({{.PostDate}})</p>
+                              </div>
+                              <div class="post-category">
+                                <!-- Assuming you have Categories associated with each post -->
+                                <!-- {{range .Categories}}
+                                  {{.}}
+                                {{end}} -->
+                              </div>
+                              <div class="post-text">
+                                {{.PostText}}
+                              </div>
+                            </a>
+                            <div class="post-options">
+                              <b>
+                                Likes <span id="like-count-{{.PostID}}">   {{.LikeCount}}</span>
+                              </b>
+
+                              <b>
+                                Dislikes <span id="dislike-count-{{.PostID}}">{{.DislikeCount}}</span>
+                              </b>
+                            </div>
+                          </div>
+                        {{end}}
+                      {{else}}
+                        <p>No posts found.</p>
+                      {{end}}
+                    </div>
+                
+                    <div class="comments">
+                        <ul>
+                            {{range .Comments}}
+                            <li>On post <a href="/view_post/{{.PostID}}">View Post</a>: {{.CommentText}}</li>
+                            {{else}}
+                            <li>No comments yet.</li>
+                            {{end}}
+                        </ul>
+                    </div>
+                
+                    <div class="liked-posts">
+                        <h2>Posts You've Liked</h2>
+                        <ul>
+                            {{range .LikedPosts}}
+                            <li><a href="/view_post/{{.PostID}}">{{.PostText}}</a></li>
+                            {{else}}
+                            <li>No liked posts yet.</li>
+                            {{end}}
+                        </ul> 
                     </div>
                 </div>
             </div>
@@ -139,5 +211,29 @@
         <li>No liked posts yet.</li>
         {{end}}
     </ul> -->
+
+    <script>
+        const tabs = document.querySelectorAll('.tab');
+        const contentSections = document.querySelectorAll('.posts, .comments, .liked-posts');
+        
+        tabs.forEach(tab => {
+          tab.addEventListener('click', () => {
+            // Remove active class from all tabs
+            tabs.forEach(t => t.classList.remove('active'));
+        
+            // Add active class to the clicked tab
+            tab.classList.add('active');
+        
+            // Get the target content section
+            const target = tab.dataset.target;
+        
+            // Remove active class from all content sections
+            contentSections.forEach(section => section.classList.remove('active'));
+        
+            // Add active class to the target content section
+            document.querySelector(`.${target}`).classList.add('active');
+          });
+        });
+    </script>
 </body>
 </html>

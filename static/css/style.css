@@ -458,7 +458,7 @@ body{
     color:#5c5b5c;
     font-size: 13px;
     margin-left: 10px;
-    margin-top: -25px;
+    margin-top: -45px;
 }
 
 /* ------------------------------------------ VIEW POST ------------------------------------------------- */
@@ -826,13 +826,120 @@ body{
 #right-profile #profile-info .profile-pic .member p{
     color: #ABAAAB;
     font-size: 15px;
+    margin-bottom: 30px;
+}
+
+#right-profile #profile-info .profile-pic .stats{
+    text-align: left;
 }
 
 #right-profile #profile-info .profile-pic .stats .stat-column{
-    border-top: #8982895c solid 2px;
-    padding: 5px 0;
+    border-top: #8982892a solid 2px;
+    padding: 15px 0;
     display: flex;
     font-size: 20px;
     font-weight: normal;
     margin: 0 auto;
+    margin-left: -12px;
+    width: 110%;
+    text-align: left;
 }
+
+#right-profile #profile-info .profile-pic .stats .stat-column h4{
+    font-size: 13px;
+    margin: 0 auto;
+    color: #777777;
+    text-align: right;
+    margin-left: 30px;
+}
+
+#right-profile #profile-info .profile-pic .stats .stat-column h5{
+    font-size: 13px;
+    margin: 0 auto;
+    text-align: right;
+    margin-right: 40px;
+}
+
+#right-profile #profile-info .profile-pic .stats{
+    text-align: center;
+}
+
+.outline-pink-btn{
+    /* background-color: #f38a82; */
+    /* color: white; */
+    /* border: none; */
+    color: #5c5b5c;
+    border: #7973792a solid 2px;
+    background: none;
+    box-shadow: none;
+    border-radius: 5px;
+    font-family: 'century gothic';
+    font-weight: bold;
+    width: 225px;
+    height: 43px;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    padding: 10px 15px;
+    opacity: 0.85;
+    letter-spacing: 1px;
+}
+
+.outline-pink-btn:hover{
+    background-color: #f39c96;
+    transition: all 0.4s ease;
+    opacity: 1;
+    color: white;
+} 
+
+#user-info{
+    display: flex;
+}
+
+#user-history{
+    background-color: white;
+    /* padding: 5px 10px; */
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    width: 750px;
+    z-index: 5;
+    margin-top: -70px;
+    position: absolute;
+    margin-left: 340px;
+}
+  
+  .tabs {
+    display: flex;
+    /* background-color: #eee; */
+    padding: 10px 20px;
+    border-bottom: #8982892a solid 2px;
+  }
+  
+  .tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    border-bottom: 3px solid #d9717100;
+    transition: all 0.2s ease;
+    font-weight: bold;
+    color: #777777;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  
+  .tab.active {
+    border-bottom: #D97171 3px solid; /* Blue color for active tab */
+    transition: all 0.2s ease;
+  }
+  
+  .content {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-top: none;
+  }
+  
+  .posts, .comments, .liked-posts {
+    display: none; /* Initially hide all content sections */
+  }
+  
+  .posts.active, .comments.active, .liked-posts.active {
+    display: block; /* Show the active content section */
+  }
